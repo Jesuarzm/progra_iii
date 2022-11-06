@@ -42,6 +42,7 @@ public class Principal_CC {
         for (int i = 0; i < sizeCinema.length; i++) {
 			//Ciclo Para Mostrar Filas
 			System.out.print("\n[ "+ myAbc.get(i) +" ]");
+            
 		}
     }
     
