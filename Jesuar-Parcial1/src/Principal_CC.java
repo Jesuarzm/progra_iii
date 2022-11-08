@@ -1,11 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.text.AbstractDocument.BranchElement;
-
 public class Principal_CC {
 
-    static String[][] Cinepolis =  new String[10][10];
+    static String[][] Cinepolis =  new String[12][12];
     static Scanner datoIngresado = new Scanner(System.in);
     static ArrayList<Character> myAbc = new ArrayList<Character>();
     static String asientoSolicitado;
@@ -43,8 +41,11 @@ public class Principal_CC {
         try{
             //Separar los datos ingresados entre letra y numero
             char letter = asientoIngresado.charAt(0);
-            int number = Character.getNumericValue(asientoIngresado.charAt(1)) - 1;
-
+            int number = Character.getNumericValue(asientoIngresado.charAt(1))  - 1;
+            //Si se detectan 2 numeros los separa y resta -1
+            if(asientoIngresado.length() == 3){
+                number =  Integer.valueOf(String.valueOf(asientoSolicitado.charAt(1)) + String.valueOf(asientoSolicitado.charAt(2))) - 1;
+            }
             //Cilco que busca la posicion a verficar
             for(int i=0; i < Cinepolis.length ; i++){
                 //Si dectecta que la posicion esta en uso retorna un "Error"
@@ -67,12 +68,17 @@ public class Principal_CC {
         
         createAbc();
         vaciarCine();
+        
         do{
-        mostrarAsientos();
-        System.out.println("Por favor indicar asiento a usar:");
-        asientoSolicitado = datoIngresado.nextLine();
-        validacionAsiento(asientoSolicitado);
+
+            mostrarAsientos();
+            System.out.println("Por favor indicar asiento a usar:");
+            asientoSolicitado = datoIngresado.nextLine();
+            validacionAsiento(asientoSolicitado);
+           
+            
         }while(true);
+
     }
     
 }
