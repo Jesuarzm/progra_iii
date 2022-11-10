@@ -4,11 +4,9 @@ import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class Prueba_Conexion {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Conexion conexion = new Conexion();
 		Connection cn = null;
 		Statement stm = null;
