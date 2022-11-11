@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexion_DB {
+public class PuenteDB {
 	
 	private static final String Controlador = "com.mysql.cj.jdbc.Driver";
 	private static final String host = "jdbc:mysql://sql9.freesqldatabase.com:3306/sql9556192";

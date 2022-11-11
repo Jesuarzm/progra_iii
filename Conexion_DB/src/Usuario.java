@@ -5,9 +5,9 @@ import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Consultores {
+public class Usuario {
 
-	public static Conexion_DB conexion = new Conexion_DB();
+	public static PuenteDB conexion = new PuenteDB();
 	public static Connection cn = null;
 	public static Statement stm = null;
 	public static ResultSet rset = null;

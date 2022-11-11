@@ -4,8 +4,9 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.sql.SQLException;
 
-public class Insertador {
-    public static Conexion_DB conexion = new Conexion_DB();
+public class DataBase {
+    
+    public static PuenteDB conexion = new PuenteDB();
 	public static Connection cn = null;
 	public static Statement stm = null;
 	public static PreparedStatement pstm = null;
