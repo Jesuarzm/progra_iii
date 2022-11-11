@@ -8,7 +8,6 @@ INDEX VERSION 1.131+/home/jesuar/Documentos/Github/progra_iii/.metadata/.plugins
 401430294.index
 956639614.index
 2808200413.index
-3959210481.index
 1066177918.index
 1301943834.index
 693908830.index
