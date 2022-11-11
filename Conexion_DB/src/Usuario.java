@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,6 +33,8 @@ public class Usuario {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			cerrarConexiones();
 		}
 	}
 	public static void consultarUsuariosIndividual(int idUsuario){
@@ -54,24 +58,54 @@ public class Usuario {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-            try {
-                if(rset!= null) {
-                    rset.close();
-                }
-                
-                if(stm!= null) {
-                    stm.close();
-                }
-                
-                if(cn!= null) {
-                    cn.close();
-                }
-				if(pstm!= null) {
-                    pstm.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
+		}finally{
+			cerrarConexiones();
+		}
+
+	}
+	public static void modificarUsuario(int true_id, int mod_id, String mod_nombre, String mod_apellido, String mod_fecha, String mod_ciudad , int mod_cel){
+		
+		try {
+			cn = conexion.conectar();	
+			pstm = cn.prepareStatement("UPDATE usuarios SET Id=? , Nombre =?, Apellido=?, Fecha_N=?, Ciudad=?, Telefono=? WHERE Id =?");
+			pstm.setInt(1, mod_id);
+			pstm.setString(2, mod_nombre);
+			pstm.setString(3, mod_apellido);
+			pstm.setString(4, mod_fecha);
+			pstm.setString(5, mod_ciudad);
+			pstm.setInt(6, mod_cel);
+			pstm.setInt(7, true_id);
+			int res = pstm.executeUpdate();
+			if (res > 0){
+				System.out.println("Modificacion realizada correctamente!");
+			}else{
+				System.out.println("Error al guardar cambios!");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			cerrarConexiones();
+		}
+		
+	}
+	public static void cerrarConexiones(){
+		try {
+			if(rset!= null) {
+				rset.close();
+			}
+			
+			if(stm!= null) {
+				stm.close();
+			}
+			
+			if(cn!= null) {
+				cn.close();
+			}
+			if(pstm!= null) {
+				pstm.close();
+			}
+		} catch (Exception e2) {
+			e2.printStackTrace();
 		}
 	}
 }
