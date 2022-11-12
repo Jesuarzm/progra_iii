@@ -3,14 +3,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class JesuarMiranda {
-	
-	public static List<List<String>> Estudiantes = new ArrayList<List<String>>();
-	public static List<List<String>> Libros = new ArrayList<List<String>>();
-	public static List<List<String>> Prestamos = new ArrayList<List<String>>();
+	//Definimos las listas de 2 dimnesiones a usar
+	public static List<List<String>> listaEstudiantes = new ArrayList<List<String>>();
+	public static List<List<String>> listaLibros = new ArrayList<List<String>>();
+	public static List<List<String>> listaPrestamos = new ArrayList<List<String>>();
+	//Definimos la entrada de datos por parte del usario por consola
 	public static Scanner datosIngresador = new Scanner(System.in);
 	public static void main(String[] args) {
+		//Agregamos un libro y un estudiante de ejemplo
 		defautlItems();
 		try {
+			//Creamos el menu de inicion
 			while(true){
 				System.out.println("Bienvenido a la biblioteca");
 				System.out.println("Que deseas hacer?");
@@ -23,16 +26,19 @@ public class JesuarMiranda {
 				"\n7. Ver estanteria completa");
 
 				int opcionMenu = datosIngresador.nextInt();
-
+				datosIngresador.nextLine();
+				//Dependiento la opcion de usuario se ejecutra el submenu 
+				//Agregar un libro
 				if (opcionMenu == 1){
 					System.out.println("Por favor ingrese el carnter del estudiante a mostrar:");
 					verEstudiante(datosIngresador.next());
 				}
+				//Agregar un libro
 				if (opcionMenu == 2){
 					System.out.println("Por favor ingre el nombre del libro");
-					String nombre = datosIngresador.next();
+					String nombre = datosIngresador.nextLine();
 					System.out.println("Por favor ingre la editorial del libro");
-					String editorial = datosIngresador.next();
+					String editorial = datosIngresador.nextLine();
 					System.out.println("Por favor ingre el ISBN del libro");
 					String isbn = datosIngresador.next();
 					System.out.println("Por favor ingre el año del libro");
@@ -62,10 +68,10 @@ public class JesuarMiranda {
 		
 	}
 	private static void verEstanteria() {
-		if(Libros.size() != 0){
-			System.out.println("Libros en estanteria: "+ Libros.size());
-			for(int i = 0; i < Libros.size(); i++){
-				System.out.println(Libros.get(i).get(0)+": "+Libros.get(i).get(1)+" - "+Libros.get(i).get(3)); 
+		if(listaLibros.size() != 0){
+			System.out.println("Libros en estanteria: "+ listaLibros.size());
+			for(int i = 0; i < listaLibros.size(); i++){
+				System.out.println(listaLibros.get(i).get(0)+": "+listaLibros.get(i).get(1)+" - "+listaLibros.get(i).get(3)); 
 			} 
 			esperarUsuario();
 		}else{
@@ -77,33 +83,33 @@ public class JesuarMiranda {
 	 * 
 	 */
 	private static void verLibro() {
-		if(Libros.size() != 0){
+		if(listaLibros.size() != 0){
 			System.out.println("Ingrese el ISBN del libro a busca");
 			String buscarLibro = datosIngresador.next();
-			for(int i = 0; i < Libros.size(); i++){
-				if(!Libros.get(i).get(2).equals(buscarLibro) && Libros.size() == i+1){
+			for(int i = 0; i < listaLibros.size(); i++){
+				if(!listaLibros.get(i).get(2).equals(buscarLibro) && listaLibros.size() == i+1){
 					System.out.println("Libro no existe en sistema");
 					esperarUsuario();
 				}
-				if(Libros.get(i).get(2).equals(buscarLibro)){
-					System.out.println(Libros.get(i).get(1)+
-					": "+Libros.get(i).get(2)+
-					" - "+Libros.get(i).get(3)+
-					" - "+ Libros.get(i).get(4)); 
+				if(listaLibros.get(i).get(2).equals(buscarLibro)){
+					System.out.println(listaLibros.get(i).get(1)+
+					": "+listaLibros.get(i).get(2)+
+					" - "+listaLibros.get(i).get(3)+
+					" - "+ listaLibros.get(i).get(4)); 
 					esperarUsuario();
 				}
 			}
 		}
 	}
 	private static void verPrestamos() {
-		if(Prestamos.size() != 0){
-			System.out.println("Libros prestados: "+ Prestamos.size());
-			for(int i = 0; i < Prestamos.size(); i++){
-				System.out.println(Prestamos.get(i).get(0)+" = "
-				+"Libro: "+Prestamos.get(i).get(1)
-				+" - "+Prestamos.get(i).get(2)
-				+"\n Carnet= "+Prestamos.get(i).get(5)
-				+"\n Dueño= "+Prestamos.get(i).get(6)
+		if(listaPrestamos.size() != 0){
+			System.out.println("Libros prestados: "+ listaPrestamos.size());
+			for(int i = 0; i < listaPrestamos.size(); i++){
+				System.out.println(listaPrestamos.get(i).get(0)+" = "
+				+"Libro: "+listaPrestamos.get(i).get(1)
+				+" - "+listaPrestamos.get(i).get(2)
+				+"\n Carnet= "+listaPrestamos.get(i).get(5)
+				+"\n Dueño= "+listaPrestamos.get(i).get(6)
 				); 
 				System.out.println();
 			} 
@@ -114,39 +120,41 @@ public class JesuarMiranda {
 		}
 	}
 	private static void prestarLibro() {
-		int indexPrestamos = Prestamos.size();
+		int indexPrestamos = listaPrestamos.size();
 		System.out.println("¿Que libro van a prestar?");
 		verEstanteria();
 		System.out.println("Ingrese el numero de libro:");
 		String libroPrestado = datosIngresador.next();
-		for(int i = 0; i < Libros.size();i++){
-			if(!Libros.get(i).get(0).equals(libroPrestado) && Libros.size() == i+1){
+		for(int i = 0; i < listaLibros.size();i++){
+			if(!listaLibros.get(i).get(0).equals(libroPrestado) && listaLibros.size() == i+1){
 				System.out.println("El libro que deseas prestar no existe");
 				esperarUsuario();
 			}
-			if(Libros.get(i).get(0).equals(libroPrestado)){
+			if(listaLibros.get(i).get(0).equals(libroPrestado)){
 				System.out.println("¿A quien se le espresta el libro?");
 				estudiantesRegistrados();
 				System.out.println("Ingresa el carnet del estudiante");
 				String id = datosIngresador.next();
-				for(int j = 0; j < Estudiantes.size(); j++){
-					if(!Estudiantes.get(j).get(0).equals(id) && Estudiantes.size() == j){
+				for(int j = 0; j < listaEstudiantes.size(); j++){
+					if(!listaEstudiantes.get(j).get(0).equals(id) && listaEstudiantes.size() == j){
 						System.out.println("El estudia que ingresaste no existe");
 						esperarUsuario();
 					}
-					if(Estudiantes.get(j).get(0).equals(id)){
+					if(listaEstudiantes.get(j).get(0).equals(id)){
 						//Trasladamos el libro a la lista de prestados
-						Prestamos.add(new ArrayList<String>());
-						Prestamos.get(indexPrestamos).add(String.valueOf(indexPrestamos));
-						Prestamos.get(indexPrestamos).add(Libros.get(i).get(1));
-						Prestamos.get(indexPrestamos).add(Libros.get(i).get(2));
-						Prestamos.get(indexPrestamos).add(Libros.get(i).get(3));
-						Prestamos.get(indexPrestamos).add(Libros.get(i).get(4));
-						Prestamos.get(indexPrestamos).add(Estudiantes.get(j).get(0));
-						Prestamos.get(indexPrestamos).add(Estudiantes.get(j).get(1));
+						listaPrestamos.add(new ArrayList<String>());
+						listaPrestamos.get(indexPrestamos).add(String.valueOf(indexPrestamos));
+						listaPrestamos.get(indexPrestamos).add(listaLibros.get(i).get(1));
+						listaPrestamos.get(indexPrestamos).add(listaLibros.get(i).get(2));
+						listaPrestamos.get(indexPrestamos).add(listaLibros.get(i).get(3));
+						listaPrestamos.get(indexPrestamos).add(listaLibros.get(i).get(4));
+						listaPrestamos.get(indexPrestamos).add(listaEstudiantes.get(j).get(0));
+						listaPrestamos.get(indexPrestamos).add(listaEstudiantes.get(j).get(1));
 						//Removemos el libro de la estanteria
-						Libros.remove(i);
+						listaLibros.remove(i);
+						ordenarLibros();
 						System.out.println("Libro prestado! Vuelve pronto.");
+						esperarUsuario();
 					}
 				}
 				
@@ -155,15 +163,15 @@ public class JesuarMiranda {
 		}
 	}
 	private static void eliminarLibro(String isbn_libro) {
-		if(Libros.size() != 0){
-			for(int i = 0; i < Libros.size(); i++){
-				if(!Libros.get(i).get(3).equals(isbn_libro) && Libros.size() == i+1){
+		if(listaLibros.size() != 0){
+			for(int i = 0; i < listaLibros.size(); i++){
+				if(!listaLibros.get(i).get(3).equals(isbn_libro) && listaLibros.size() == i+1){
 					System.out.println("Libro que desea borrar no existe");
-					esperarUsuario();
-					break;
+					esperarUsuario();				
 				}
-				if(Libros.get(i).get(3).equals(isbn_libro)){
-					Libros.remove(i);
+				if(listaLibros.get(i).get(3).equals(isbn_libro)){
+					listaLibros.remove(i);
+					ordenarLibros();
 					System.out.println("Libro borrado con exito");
 					esperarUsuario();
 				}
@@ -174,39 +182,39 @@ public class JesuarMiranda {
 		}
 	}
 	private static void agregarLibro(String nombre, String editorial, String isbn, String año) {
-		int index = Libros.size();
-		Libros.add(new ArrayList<String>());
-		Libros.get(index).add(String.valueOf(Libros.size()));
-		Libros.get(index).add(nombre);
-		Libros.get(index).add(editorial);
-		Libros.get(index).add(isbn);
-		Libros.get(index).add(año);
+		int index = listaLibros.size();
+		listaLibros.add(new ArrayList<String>());
+		listaLibros.get(index).add(String.valueOf(listaLibros.size()));
+		listaLibros.get(index).add(nombre);
+		listaLibros.get(index).add(editorial);
+		listaLibros.get(index).add(isbn);
+		listaLibros.get(index).add(año);
 		System.out.println("Libro Agregado con exito!");
 		esperarUsuario();
 	}
 	private static void verEstudiante(String carnet) {
-		for(int i = 0; i < Estudiantes.size(); i++){
-			if(!Estudiantes.get(i).get(0).equals(carnet) && Estudiantes.size() == i+1){
+		for(int i = 0; i < listaEstudiantes.size(); i++){
+			if(!listaEstudiantes.get(i).get(0).equals(carnet) && listaEstudiantes.size() == i+1){
 				System.out.println("Estudiante no existe en sistema..");
 				esperarUsuario();
 			}
-			if(Estudiantes.get(i).get(0).equals(carnet)){
+			if(listaEstudiantes.get(i).get(0).equals(carnet)){
 				System.out.println("Estudiante Encontrado");
 				System.out.println(
-					"Carnet : "+Estudiantes.get(i).get(0)+
-					"\nNombre : "+Estudiantes.get(i).get(1)+
-					"\nTelefono : "+Estudiantes.get(i).get(2)
+					"Carnet : "+listaEstudiantes.get(i).get(0)+
+					"\nNombre : "+listaEstudiantes.get(i).get(1)+
+					"\nTelefono : "+listaEstudiantes.get(i).get(2)
 				);
-				System.out.println(Estudiantes.get(i).size());
+				System.out.println(listaEstudiantes.get(i).size());
 				esperarUsuario();
 			}
 		}
 	}
 	public static void estudiantesRegistrados(){
-		if(Estudiantes.size() != 0){
-			System.out.println("Estudiantes registrados: "+ Estudiantes.size());
-			for(int i = 0; i < Estudiantes.size(); i++){
-				System.out.println(Estudiantes.get(i).get(0)+" = "+Estudiantes.get(i).get(1)); 
+		if(listaEstudiantes.size() != 0){
+			System.out.println("Estudiantes registrados: "+ listaEstudiantes.size());
+			for(int i = 0; i < listaEstudiantes.size(); i++){
+				System.out.println(listaEstudiantes.get(i).get(0)+" = "+listaEstudiantes.get(i).get(1)); 
 			} 
 			esperarUsuario();
 		}else{
@@ -216,26 +224,37 @@ public class JesuarMiranda {
 	}
 	public static void defautlItems(){
 		//Creamos un nuevo estudiante
-		Estudiantes.add(new ArrayList<String>());
+		listaEstudiantes.add(new ArrayList<String>());
 		//Agremos el Carnet
-		Estudiantes.get(0).add("155822558001");
+		listaEstudiantes.get(0).add("155822558001");
 		//Agremamos el nombre
-		Estudiantes.get(0).add("Jesuar Miranda");
+		listaEstudiantes.get(0).add("Jesuar Miranda");
 		//Agregamos el telegono
-		Estudiantes.get(0).add("84092380");
+		listaEstudiantes.get(0).add("84092380");
 
 		//Creamos un nuebo libro
-		Libros.add(new ArrayList<String>());
+		listaLibros.add(new ArrayList<String>());
 		//Agregmos el index del libro
-		Libros.get(0).add("1");
+		listaLibros.get(0).add("1");
 		//Agregamos el nombre del libro
-		Libros.get(0).add("Clean Code");
+		listaLibros.get(0).add("Clean Code");
 		//Agregamos la editorial
-		Libros.get(0).add("ANAYA MULTIMEDIA ");
+		listaLibros.get(0).add("ANAYA MULTIMEDIA ");
 		//Agregamos el ISBN
-		Libros.get(0).add("9780132350884");
+		listaLibros.get(0).add("9780132350884");
 		//Agregamos el año de publicacion
-		Libros.get(0).add("2012");
+		listaLibros.get(0).add("2012");
+	}
+	public static void ordenarLibros(){
+		if(listaLibros.size() != 0){
+			for(int i = 0; i < listaLibros.size(); i++){
+				listaLibros.get(i).set(0, String.valueOf(i+1));
+			}
+		}else{
+			System.out.println("No hay libros que acomodar");
+			esperarUsuario();
+		}
+
 	}
 	public static void esperarUsuario(){
 		Scanner scanner = new Scanner(System.in);
