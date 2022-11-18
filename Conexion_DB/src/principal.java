@@ -10,10 +10,11 @@ public class principal {
     public static void main(String[] args) {
 		
 		try {
-			while(true){
+            while(true){
 
-				System.out.println("Seleccione que desea hacer: "+"\n1. Consultar Todos Usuarios 2.Consultar Usuario Especifico 3. Nuevo Usuario 4. Modificar Usuario");
+				System.out.println("Seleccione que desea hacer: "+"\n1. Consultar Todos Usuarios 2.Consultar Usuario Especifico 3. Nuevo Usuario 4. Modificar Usuario 5. Borrar Usuario");
 				int opcionMenu = datosIngresados.nextInt();
+                datosIngresados.nextLine();
 				if (opcionMenu == 1) {
 					Usuario.consultarUsuarios();
 				}
@@ -69,6 +70,10 @@ public class principal {
                     int cel = datosIngresados.nextInt();
 
                     Usuario.modificarUsuario(true_id, id, nombre, apellido, date, ciudad, cel);
+                }
+                if(opcionMenu == 5){
+                    System.out.println("Porfavor ingrese el Id del usuario a borrar");
+                    Usuario.borrarUsuario(datosIngresados.nextLine());
                 }
 			}
 

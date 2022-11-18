@@ -1,11 +1,9 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 
 public class Usuario {
 
@@ -87,6 +85,23 @@ public class Usuario {
 			cerrarConexiones();
 		}
 		
+	}
+	public static void borrarUsuario(int id_borrar){
+		try {
+			cn = conexion.conectar();	
+			pstm = cn.prepareStatement("DELETE FROM usuarios WHERE Id =?");
+			pstm.setInt(1, id_borrar);
+			int res = pstm.executeUpdate();
+			if (res > 0){
+				System.out.println("Usuario Borradao!");
+			}else{
+				System.out.println("Error al guardar cambios!");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			cerrarConexiones();
+		}
 	}
 	public static void cerrarConexiones(){
 		try {
