@@ -73,7 +73,7 @@ public class principal {
                 }
                 if(opcionMenu == 5){
                     System.out.println("Porfavor ingrese el Id del usuario a borrar");
-                    Usuario.borrarUsuario(datosIngresados.nextLine());
+                    Usuario.borrarUsuario(datosIngresados.nextInt());
                 }
 			}
 
