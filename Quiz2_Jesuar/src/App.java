@@ -1,3 +1,7 @@
+import java.lang.reflect.Array;
+
+import javax.swing.JOptionPane;
+
 public class App extends Thread{
 
 	public static void main(String[] args) {
@@ -9,6 +13,7 @@ public class App extends Thread{
 		numerosImpares eje2 = new numerosImpares();
         Thread h2 = new Thread(eje2);
 		h2.start();
+		
 	}
 
 }
