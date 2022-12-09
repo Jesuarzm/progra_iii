@@ -93,8 +93,8 @@ public class Ventana extends JFrame{
         btnacceder.addActionListener(new ActionListener(){
             
             public void actionPerformed(ActionEvent e) {
-                loginCuenta.dispose();
-                inicioSesionPin();
+                    loginCuenta.dispose();
+                    inicioSesionPin();
             }
          });
          btnNum0.addActionListener(new ActionListener(){
@@ -102,6 +102,87 @@ public class Ventana extends JFrame{
             public void actionPerformed(ActionEvent e) {
                     String usrData = tfUsuario.getText();
                     usrData= usrData + "0";
+                    tfUsuario.setText(usrData);
+                
+            }
+         });
+         btnNum1.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                    String usrData = tfUsuario.getText();
+                    usrData= usrData + "1";
+                    tfUsuario.setText(usrData);
+                
+            }
+         });
+         btnNum2.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                    String usrData = tfUsuario.getText();
+                    usrData= usrData + "2";
+                    tfUsuario.setText(usrData);
+                
+            }
+         });
+         btnNum3.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                    String usrData = tfUsuario.getText();
+                    usrData= usrData + "3";
+                    tfUsuario.setText(usrData);
+                
+            }
+         });
+         btnNum4.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                    String usrData = tfUsuario.getText();
+                    usrData= usrData + "4";
+                    tfUsuario.setText(usrData);
+                
+            }
+         });
+         btnNum5.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                    String usrData = tfUsuario.getText();
+                    usrData= usrData + "5";
+                    tfUsuario.setText(usrData);
+                
+            }
+         });
+         btnNum6.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                    String usrData = tfUsuario.getText();
+                    usrData= usrData + "6";
+                    tfUsuario.setText(usrData);
+                
+            }
+         });
+         btnNum7.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                    String usrData = tfUsuario.getText();
+                    usrData= usrData + "7";
+                    tfUsuario.setText(usrData);
+                
+            }
+         });
+         btnNum8.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                    String usrData = tfUsuario.getText();
+                    usrData= usrData + "8";
+                    tfUsuario.setText(usrData);
+                
+            }
+         });
+         btnNum9.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                    String usrData = tfUsuario.getText();
+                    usrData= usrData + "9";
                     tfUsuario.setText(usrData);
                 
             }
@@ -143,8 +224,9 @@ public class Ventana extends JFrame{
         centerPanel.add(btnNum1);
         centerPanel.add(btnNum2);
         centerPanel.add(btnNum3);
-        btnacceder.setBackground(new Color(0,255,0));
-        centerPanel.add(btnacceder);
+        JButton btnacceder2 = new JButton("OK");
+        btnacceder2.setBackground(new Color(0,255,0));
+        centerPanel.add(btnacceder2);
         centerPanel.add(btnavacio1);
         centerPanel.add(btnNum0);
         centerPanel.add(btnavacio2);
@@ -165,7 +247,7 @@ public class Ventana extends JFrame{
         loginPin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         loginPin.setVisible(true);
        
-        btnacceder.addActionListener(new ActionListener(){
+        btnacceder2.addActionListener(new ActionListener(){
             
             public void actionPerformed(ActionEvent e) {
                 char[] pswEncrip = tfpassword.getPassword();
