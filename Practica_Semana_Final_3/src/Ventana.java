@@ -292,6 +292,7 @@ public class Ventana extends JFrame{
                 if(Usuarios.consultarUsuariosIndividual(tfUsuario.getText(), pswSimple) == true){
                     loginPin.dispose();
                     JOptionPane.showMessageDialog(mainPanel, "Inicio Correcto!");
+                    cajero();
                 }
             }
          });
@@ -543,6 +544,17 @@ public class Ventana extends JFrame{
                 inicioSesionCuenta();
             }
          });
+
+    }
+    public static void cajero() {
+      JFrame jfATM = new JFrame();
+
+      jfATM.setTitle("Cajero Automatico BAC");
+      jfATM.setSize(800,800);
+      jfATM.setExtendedState(JFrame.MAXIMIZED_BOTH);
+      jfATM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      jfATM.setVisible(true);
+      jfATM.setAlwaysOnTop(true);
 
     }
 }
