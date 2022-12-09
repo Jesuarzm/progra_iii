@@ -295,6 +295,18 @@ public class Ventana extends JFrame{
                 }
             }
          });
+         btncancelar.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+         });
+         btnclear.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                tfpassword.setText("");
+            }
+         });
          btnNum0.addActionListener(new ActionListener(){
             
             public void actionPerformed(ActionEvent e) {
