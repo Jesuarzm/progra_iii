@@ -35,14 +35,11 @@ public class Usuarios {
     }
     public static boolean consultarUsuariosIndividual(String numCuenta, String pincode) {
         for(int i = 0; i< db_usuarios.size(); i++){
-            if (db_usuarios.get(i).get(0).equals(numCuenta)) {
-                return true;
-            }
-            if(db_usuarios.get(i).get(4).equals(pincode)){
+            if (db_usuarios.get(i).get(0).equals(numCuenta) && db_usuarios.get(i).get(4).equals(pincode)) {
                 return true;
             }
             if(db_usuarios.size()-1 == 1){
-                JOptionPane.showMessageDialog(null, "Usuario o Pin Incorrecto");
+                return false;
             }
         }
         return false;

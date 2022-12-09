@@ -7,6 +7,7 @@ public class Ventana extends JFrame{
     public static Font mainfont = new Font("Arial", Font.BOLD, 16);
     public static JTextField tfUsuario = new JTextField();
     public static JPasswordField tfpassword = new JPasswordField();
+   public static JComboBox<String> dia, mes;
 
     public static void inicioSesionCuenta() {
 
@@ -85,6 +86,7 @@ public class Ventana extends JFrame{
         loginCuenta.setSize(400,300);
         loginCuenta.setResizable(false);
         loginCuenta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        loginCuenta.setLocationRelativeTo(null);
         loginCuenta.setVisible(true);
        
          btnacceder.addActionListener(new ActionListener(){
@@ -279,6 +281,7 @@ public class Ventana extends JFrame{
         loginPin.setSize(400,300);
         loginPin.setResizable(false);
         loginPin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        loginPin.setLocationRelativeTo(null);
         loginPin.setVisible(true);
        
         btnacceder.addActionListener(new ActionListener(){
@@ -293,6 +296,13 @@ public class Ventana extends JFrame{
                     loginPin.dispose();
                     JOptionPane.showMessageDialog(mainPanel, "Inicio Correcto!");
                     cajero();
+                }else{
+                  JOptionPane.showMessageDialog(null, "Usuario o Pin Incorrecto");
+                     tfUsuario.setText("");
+                     tfUsuario.setText("");
+                     loginPin.dispose();
+                     inicioSesionCuenta();
+                     
                 }
             }
          });
@@ -435,28 +445,28 @@ public class Ventana extends JFrame{
         Ventana crearUsuario = new Ventana();
         
         //Configuracion de panel Superior
-        JPanel northPane = new JPanel();
-        northPane.setLayout(new GridLayout(10,1,5,0));
-        northPane.setFont(mainfont);
-        northPane.setOpaque(false);
+        JPanel panelRegisto = new JPanel();
+        panelRegisto.setLayout(new GridLayout(10,1,5,0));
+        panelRegisto.setFont(mainfont);
+        panelRegisto.setOpaque(false);
         
         JLabel lblnombre = new JLabel("Nombre:");
         lblnombre.setFont(mainfont);
-        northPane.add(lblnombre);
+        panelRegisto.add(lblnombre);
         JTextField tfNombre = new JTextField();
         tfNombre.setFont(mainfont);
-        northPane.add(tfNombre);
+        panelRegisto.add(tfNombre);
 
         JLabel lblapellido = new JLabel("Apellido:");
         lblapellido.setFont(mainfont);
-        northPane.add(lblapellido);
+        panelRegisto.add(lblapellido);
         JTextField tfApellido = new JTextField();
         tfApellido.setFont(mainfont);
-        northPane.add(tfApellido);
+        panelRegisto.add(tfApellido);
 
             JLabel llbfecha = new JLabel("Fecha Nacimento:");
             llbfecha.setFont(mainfont);
-            northPane.add(llbfecha);
+            panelRegisto.add(llbfecha);
 
             JPanel fechaPane = new JPanel();
             fechaPane.setLayout(new GridLayout(2,3,5,0));
@@ -473,52 +483,96 @@ public class Ventana extends JFrame{
             fechaPane.add(lblaño);
             
 
-            JTextField dia = new JTextField();
+            dia = new JComboBox<String>();
+            dia.addItem("1");
+            dia.addItem("2");
+            dia.addItem("3");
+            dia.addItem("4");
+            dia.addItem("5");
+            dia.addItem("6");
+            dia.addItem("7");
+            dia.addItem("8");
+            dia.addItem("9");
+            dia.addItem("10");
+            dia.addItem("11");
+            dia.addItem("12");
+            dia.addItem("13");
+            dia.addItem("14");
+            dia.addItem("15");
+            dia.addItem("16");
+            dia.addItem("17");
+            dia.addItem("18");
+            dia.addItem("19");
+            dia.addItem("20");
+            dia.addItem("21");
+            dia.addItem("22");
+            dia.addItem("23");
+            dia.addItem("24");
+            dia.addItem("25");
+            dia.addItem("26");
+            dia.addItem("27");
+            dia.addItem("28");
+            dia.addItem("29");
+            dia.addItem("30");
+            dia.addItem("31");
             dia.setFont(mainfont);
             fechaPane.add(dia);
-            JTextField mes = new JTextField();
+            mes = new JComboBox<String>();
+            mes.addItem("Enero");
+            mes.addItem("Febrero");
+            mes.addItem("Marzo");
+            mes.addItem("Abril");
+            mes.addItem("Mayo");
+            mes.addItem("Junio");
+            mes.addItem("Julio");
+            mes.addItem("Agosto");
+            mes.addItem("Septiembre");
+            mes.addItem("Octubre");
+            mes.addItem("Noviembre");
+            mes.addItem("Diciembre");
+
             mes.setFont(mainfont);
             fechaPane.add(mes);
             JTextField año = new JTextField();
             año.setFont(mainfont);
             fechaPane.add(año);
 
-            northPane.add(fechaPane);
+            panelRegisto.add(fechaPane);
             
-         JLabel lblPassword = new JLabel();  
+         JLabel lblPassword = new JLabel("Definir Pin");  
          lblPassword.setFont(mainfont);
-         northPane.add(lblPassword);
+         panelRegisto.add(lblPassword);
 
          tfpassword.setFont(mainfont);
-         northPane.add(tfpassword);
+         panelRegisto.add(tfpassword);
 
          JLabel lblPassConfirm = new JLabel("Confirmar Pin");
          lblPassConfirm.setFont(mainfont);
-         northPane.add(lblPassConfirm);
+         panelRegisto.add(lblPassConfirm);
 
          JPasswordField pfPassConfirm = new JPasswordField();
          pfPassConfirm.setFont(mainfont);
-         northPane.add(pfPassConfirm);
+         panelRegisto.add(pfPassConfirm);
 
          //Configurar Panel Inferior
-         JPanel southPane = new JPanel();
-         southPane.setLayout(new GridLayout(1,2,5,5));
-         southPane.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
-         JButton btnOK = new JButton();
-         southPane.add(btnOK);
-         JButton btnCancel = new JButton();
-         southPane.add(btnCancel);
+         JPanel panelBotones = new JPanel();
+         panelBotones.setLayout(new GridLayout(1,2,5,5));
+         panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 10));
+         JButton btnOK = new JButton("Registrase");
+         panelBotones.add(btnOK);
+         JButton btnCancel = new JButton("Cancelar");
+         panelBotones.add(btnCancel);
 
          //Configurar Main Panel
          JPanel mainPane = new JPanel();
          mainPane.setLayout(new BorderLayout());
          mainPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-         mainPane.add(northPane, BorderLayout.NORTH);
-         mainPane.add(southPane, BorderLayout.SOUTH);
+         mainPane.add(panelRegisto, BorderLayout.CENTER);
+         mainPane.add(panelBotones, BorderLayout.SOUTH);
 
          crearUsuario.add(mainPane);
          crearUsuario.setTitle("Crear Usuario");
-         crearUsuario.setSize(400,550);
+         crearUsuario.setSize(400,500);
          crearUsuario.setResizable(false);
          crearUsuario.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
          crearUsuario.setVisible(true);
@@ -548,6 +602,7 @@ public class Ventana extends JFrame{
     }
     public static void cajero() {
       JFrame jfATM = new JFrame();
+
 
       jfATM.setTitle("Cajero Automatico BAC");
       jfATM.setSize(800,800);
