@@ -543,8 +543,9 @@ public class Ventana extends JFrame{
          lblPassword.setFont(mainfont);
          panelRegisto.add(lblPassword);
 
-         tfpassword.setFont(mainfont);
-         panelRegisto.add(tfpassword);
+         JPasswordField pswUser = new JPasswordField();
+         pswUser.setFont(mainfont);
+         panelRegisto.add(pswUser);
 
          JLabel lblPassConfirm = new JLabel("Confirmar Pin");
          lblPassConfirm.setFont(mainfont);
@@ -575,12 +576,13 @@ public class Ventana extends JFrame{
          crearUsuario.setSize(400,500);
          crearUsuario.setResizable(false);
          crearUsuario.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+         crearUsuario.setLocationRelativeTo(null);
          crearUsuario.setVisible(true);
 
          btnOK.addActionListener(new ActionListener(){
             
             public void actionPerformed(ActionEvent e) {
-                char [] pswdEncriptada = tfpassword.getPassword();
+                char [] pswdEncriptada = pswUser.getPassword();
                 char [] pswdVerification = pfPassConfirm.getPassword();
                 if(Arrays.equals(pswdEncriptada, pswdVerification)){
                     String pswPin= "";
@@ -588,12 +590,13 @@ public class Ventana extends JFrame{
                         pswPin+=pswdEncriptada[i];
                     }
                     Usuarios.agregarUsuario(
-                        lblnombre.getText(),
-                        lblapellido.getText(),
-                        lbldia.getText()+lblmes.getText()+lblaño.getText(),
+                        tfNombre.getText(),
+                        tfApellido.getText(),
+                        ""+dia.getSelectedItem()+"/"+mes.getSelectedItem()+"/"+año.getText(),
                         pswPin
                     );
                 }
+                System.out.println(Usuarios.db_usuarios);
                 crearUsuario.dispose();
                 inicioSesionCuenta();
             }
@@ -601,15 +604,171 @@ public class Ventana extends JFrame{
 
     }
     public static void cajero() {
-      JFrame jfATM = new JFrame();
+      JFrame cajero = new JFrame();
 
 
-      jfATM.setTitle("Cajero Automatico BAC");
-      jfATM.setSize(800,800);
-      jfATM.setExtendedState(JFrame.MAXIMIZED_BOTH);
-      jfATM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      jfATM.setVisible(true);
-      jfATM.setAlwaysOnTop(true);
+      //Configuracion menu Principal
+      JPanel menuInicio = new JPanel();
+      menuInicio.setLayout(new GridLayout(3,2,0,0));
+      menuInicio.setBounds(0,0,340,500);
+      menuInicio.setOpaque(false);
+      menuInicio.setVisible(true);
+      JLabel opcMenu1 = new JLabel("Balance");
+      menuInicio.add(opcMenu1);
+      JLabel opcMenu2 = new JLabel("Retiros", SwingConstants.RIGHT);
+      menuInicio.add(opcMenu2);
+      JLabel opcMenu3 = new JLabel("Depositos");
+      menuInicio.add(opcMenu3);
+      JLabel opcMenu4 = new JLabel("Transferecnias", SwingConstants.RIGHT);
+      menuInicio.add(opcMenu4);
 
+      //Configuracion menu Balance
+      JPanel menuBalance = new JPanel();
+      menuBalance.setLayout(new GridLayout(3,2, 5,0));
+      menuBalance.setBounds(0,0,700,600);
+      menuBalance.setOpaque(false);
+      menuBalance.setVisible(false);
+      JLabel lblVacias1 = new JLabel("Salir");
+      menuBalance.add(lblVacias1);
+      JLabel lblVacias2 = new JLabel();
+      menuBalance.add(lblVacias2);
+      JLabel lblBalance = new JLabel("Fondos: ");
+      menuBalance.add(lblBalance);
+      JLabel lblBalanceTotal = new JLabel();
+      menuBalance.add(lblBalanceTotal);
+
+      //Configuracion menu Retiro
+      JPanel menuRetiro = new JPanel();
+      menuRetiro.setLayout(new GridLayout(1,2, 5,0));
+      menuRetiro.setBounds(0,0,340,600);
+      menuRetiro.setVisible(false);
+      JLabel lbLRetiro = new JLabel("Monto a retirar: ");
+      menuBalance.add(lbLRetiro);
+      JTextField tfRetiro = new JTextField();
+      menuBalance.add(tfRetiro);
+      
+      //Configuracion panel Pantalla
+      JPanel panelPantalla = new JPanel();
+      panelPantalla.setLayout(null);
+      panelPantalla.setBackground(new Color(31,167,194));
+      panelPantalla.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+      panelPantalla.add(menuInicio);
+      panelPantalla.add(menuBalance);
+      panelPantalla.add(menuRetiro);
+
+      //Configuracion de panel BOtones Izquierdos
+      JPanel panelBtnIzq = new JPanel();
+      panelBtnIzq.setLayout(new GridLayout(3,1,0,10));
+      panelBtnIzq.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+      JButton btnOpc1 = new JButton("Opcion 1");
+      panelBtnIzq.add(btnOpc1);
+      JButton btnOpc3 = new JButton("Opcion 3");
+      panelBtnIzq.add(btnOpc3);
+      JButton btnVacio1 = new JButton();
+      btnVacio1.setEnabled(false);
+      panelBtnIzq.add(btnVacio1);
+
+      //Configuracion de panel Botones Derechos
+      JPanel panelBtnDer = new JPanel();
+      panelBtnDer.setLayout(new GridLayout(3,1,0,10));
+      panelBtnDer.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+      JButton btnOpc2 = new JButton("Opcion 2");
+      panelBtnDer.add(btnOpc2);
+      JButton btnOpc4 = new JButton("Opcion 4");
+      panelBtnDer.add(btnOpc4);
+      JButton btnVacio2 = new JButton();
+      btnVacio2.setEnabled(false);
+      panelBtnDer.add(btnVacio2);
+
+      //Configuracion Panel Numerico
+      JPanel panelTeclado = new JPanel();
+      panelTeclado.setLayout(new GridLayout(4,4,5,5));
+      panelTeclado.setOpaque(false);
+      panelTeclado.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
+      JButton btnNum7 = new JButton("7");
+      panelTeclado.add(btnNum7);
+      JButton btnNum8 = new JButton("8");
+      panelTeclado.add(btnNum8);
+      JButton btnNum9 = new JButton("9");
+      panelTeclado.add(btnNum9);
+      JButton btncancelar = new JButton("CANCEL");
+      btncancelar.setBackground(new Color(255,0,0));
+      panelTeclado.add(btncancelar);
+      JButton btnNum4 = new JButton("4");
+      panelTeclado.add(btnNum4);
+      JButton btnNum5 = new JButton("5");
+      panelTeclado.add(btnNum5);
+      JButton btnNum6 = new JButton("6");
+      panelTeclado.add(btnNum6);
+      JButton btnclear = new JButton("CLEAR");
+      btnclear.setBackground(new Color(255,255,0));
+      panelTeclado.add(btnclear);
+      JButton btnNum1 = new JButton("1");
+      panelTeclado.add(btnNum1);
+      JButton btnNum2 = new JButton("2");
+      panelTeclado.add(btnNum2);
+      JButton btnNum3 = new JButton("3");
+      panelTeclado.add(btnNum3);
+      JButton btnacceder = new JButton("OK");
+      btnacceder.setBackground(new Color(0,255,0));
+      panelTeclado.add(btnacceder);
+      JButton btnavacio1 = new JButton();
+      btnavacio1.setEnabled(false);;
+      panelTeclado.add(btnavacio1);
+      JButton btnNum0 = new JButton("0");
+      panelTeclado.add(btnNum0);
+      JButton btnavacio2 = new JButton();
+      btnavacio2.setEnabled(false);
+      panelTeclado.add(btnavacio2);
+      JButton btnavacio3 = new JButton();
+      btnavacio3.setEnabled(false);
+      panelTeclado.add(btnavacio3);
+      
+      //Configuracion panel Izq
+      JPanel panelIzq = new JPanel();
+      panelIzq.setLayout(new BorderLayout());
+      panelIzq.add(panelPantalla, BorderLayout.CENTER);
+      panelIzq.add(panelTeclado, BorderLayout.SOUTH);
+      panelIzq.add(panelBtnDer, BorderLayout.EAST);
+      panelIzq.add(panelBtnIzq, BorderLayout.WEST);
+
+      //Configuracion panel Izq
+      JPanel panelDer = new JPanel();
+      panelDer.setLayout(new BorderLayout());
+      JButton buttonPrueba = new JButton("Prueba");
+      panelDer.add(buttonPrueba);
+
+      //Configuracion panel prinicipal
+      JPanel mainPanel = new JPanel();
+      mainPanel.setLayout(new GridLayout(1,2));
+      mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+      mainPanel.add(panelIzq);
+      //mainPanel.add(panelDer);
+
+      //Configuracion del JFrame
+      cajero.add(mainPanel);
+      cajero.setTitle("Cajero Automatico BAC");
+      cajero.setSize(600,600);
+      cajero.setResizable(false);
+      cajero.setLocationRelativeTo(null);
+      cajero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      cajero.setVisible(true);
+      cajero.setAlwaysOnTop(true);
+
+      btnOpc1.addActionListener(new ActionListener(){
+            
+         public void actionPerformed(ActionEvent e) {
+             if(menuInicio.isVisible() == true){
+               menuInicio.setVisible(false);
+               menuBalance.setVisible(true);
+               for(int i = 0; i < Usuarios.db_usuarios.size();i++){
+                  if(Usuarios.db_usuarios.get(i).get(0).equals(tfUsuario.getText())){
+                     lblBalanceTotal.setText(Usuarios.db_usuarios.get(i).get(5));
+                  }
+               }
+             }
+         }
+      });
+      
     }
 }

@@ -38,9 +38,6 @@ public class Usuarios {
             if (db_usuarios.get(i).get(0).equals(numCuenta) && db_usuarios.get(i).get(4).equals(pincode)) {
                 return true;
             }
-            if(db_usuarios.size()-1 == 1){
-                return false;
-            }
         }
         return false;
         
