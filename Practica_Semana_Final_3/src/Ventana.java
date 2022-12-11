@@ -609,10 +609,10 @@ public class Ventana extends JFrame{
 
       //Configuracion menu Principal
       JPanel menuInicio = new JPanel();
+      menuInicio.setVisible(true);
       menuInicio.setLayout(new GridLayout(3,2,0,0));
       menuInicio.setBounds(0,0,340,500);
       menuInicio.setOpaque(false);
-      menuInicio.setVisible(true);
       JLabel opcMenu1 = new JLabel("Balance");
       menuInicio.add(opcMenu1);
       JLabel opcMenu2 = new JLabel("Retiros", SwingConstants.RIGHT);
@@ -624,14 +624,14 @@ public class Ventana extends JFrame{
 
       //Configuracion menu Balance
       JPanel menuBalance = new JPanel();
-      menuBalance.setLayout(new GridLayout(3,2, 5,0));
-      menuBalance.setBounds(0,0,700,600);
-      menuBalance.setOpaque(false);
       menuBalance.setVisible(false);
-      JLabel lblVacias1 = new JLabel("Salir");
+      menuBalance.setLayout(new GridLayout(3,2, 5,0));
+      menuBalance.setBounds(0,0,340,500);
+      menuBalance.setOpaque(false);
+      JLabel lblSalir = new JLabel("Salir");
+      menuBalance.add(lblSalir);
+      JLabel lblVacias1 = new JLabel();
       menuBalance.add(lblVacias1);
-      JLabel lblVacias2 = new JLabel();
-      menuBalance.add(lblVacias2);
       JLabel lblBalance = new JLabel("Fondos: ");
       menuBalance.add(lblBalance);
       JLabel lblBalanceTotal = new JLabel();
@@ -639,9 +639,12 @@ public class Ventana extends JFrame{
 
       //Configuracion menu Retiro
       JPanel menuRetiro = new JPanel();
-      menuRetiro.setLayout(new GridLayout(1,2, 5,0));
-      menuRetiro.setBounds(0,0,340,600);
       menuRetiro.setVisible(false);
+      menuRetiro.setLayout(new GridLayout(3,2, 5,0));
+      JLabel lblSalir2 = new JLabel("Salir");
+      menuBalance.add(lblSalir2);
+      JLabel lblVacias2 = new JLabel();
+      menuBalance.add(lblVacias2);
       JLabel lbLRetiro = new JLabel("Monto a retirar: ");
       menuBalance.add(lbLRetiro);
       JTextField tfRetiro = new JTextField();
