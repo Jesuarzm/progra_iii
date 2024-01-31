@@ -35,7 +35,7 @@ public class principal {
                     System.out.println("Ingrese la fecha nacimiento: Año/Mes/Dia"+ "\n Ejemplo: 2001/09/17");
                     String fecha = datosIngresados.next();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                    LocalDate date = LocalDate.parse(fecha, formatter);
+                    LocalDate dateN = LocalDate.parse(fecha, formatter);
                     
 
                     System.out.println("Ingrese la Ciudad");
@@ -44,7 +44,7 @@ public class principal {
                     System.out.println("Ingrese el numero de telefono");
                     int cel = datosIngresados.nextInt();
 
-                    DataBase.insertarUsuario(id, nombre, apellido, date, ciudad, cel);
+                    DataBase.insertarUsuario(id, nombre, apellido, dateN, ciudad, cel);
                 }
                 if(opcionMenu == 4){
                     System.out.println("Por ingrese el Id del usuario a modifcar:");

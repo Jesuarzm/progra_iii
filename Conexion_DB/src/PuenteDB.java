@@ -5,9 +5,9 @@ import java.sql.SQLException;
 public class PuenteDB {
 	
 	private static final String Controlador = "com.mysql.cj.jdbc.Driver";
-	private static final String host = "jdbc:mysql://sql9.freesqldatabase.com:3306/sql9556192";
-	private static final String userDB = "sql9556192";
-	private static final String passDB = "HZKGcpWkTq";
+	private static final String host = "jdbc:mysql://193.203.166.20:3306/u816849082_ulatina";
+	private static final String userDB = "u816849082_admin";
+	private static final String passDB = "HacKGAmer001";
 	
 	static {
 		try {
